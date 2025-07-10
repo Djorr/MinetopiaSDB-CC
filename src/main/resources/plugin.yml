@@ -1,0 +1,14 @@
+name: MinetopiaSDB-CC
+main: nl.djorr.MinetopiaSDBCC
+version: 1.0
+api-version: 1.12
+author: Djorr
+commands:
+  buildmode:
+    description: Toggle buildmode
+    usage: /<command>
+    permission: buildmode.use
+permissions:
+  buildmode.use:
+    description: Toegang tot buildmode
+    default: true 
