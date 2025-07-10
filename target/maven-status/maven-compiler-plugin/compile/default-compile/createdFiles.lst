@@ -1,5 +1,1 @@
-nl\djorr\MinetopiaSDBCC.class
-nl\djorr\manager\BuildModeManager.class
 nl\djorr\model\BuildModePlayer.class
-nl\djorr\listener\BuildModeListener.class
-nl\djorr\command\BuildModeCommand.class

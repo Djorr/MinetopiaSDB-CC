@@ -29,6 +29,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 @RequiredArgsConstructor
 public class BuildModeListener implements Listener {
@@ -120,6 +121,21 @@ public class BuildModeListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
-        manager.removePlayerFromBuildMode(e.getPlayer());
+        Player player = e.getPlayer();
+        if (isInBuildMode(player)) {
+            manager.getBuildModePlayer(player).ifPresent(bmp -> bmp.restore(player));
+            player.setGameMode(GameMode.SURVIVAL);
+        }
+        manager.removePlayerFromBuildMode(player);
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent e) {
+        Player player = e.getPlayer();
+        if (isInBuildMode(player)) {
+            manager.getBuildModePlayer(player).ifPresent(bmp -> bmp.restore(player));
+            player.setGameMode(GameMode.SURVIVAL);
+            manager.removePlayerFromBuildMode(player);
+        }
     }
 } 
